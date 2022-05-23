@@ -1,9 +1,10 @@
 import { MongoClient } from 'mongodb';
+const dotenv = require("dotenv").config();
 
 async function handler(req, res) {
     if (req.method === 'POST') {
         const data = req.body;
-        const client = await MongoClient.connect('mongodb+srv://user:0DaQNxgPf1o4MDGQ@applicationdb.83iv8.mongodb.net/meetups?retryWrites=true&w=majority');
+        const client = await MongoClient.connect(process.env.DATABASE_CONN);
         const db = client.db();
 
         const meetupsCollection = db.collection('meetups');
